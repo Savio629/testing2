@@ -53,19 +53,19 @@ export class DiagnosticFixProvider implements vscode.CodeActionProvider {
       if (errorCode && this.quickFixes[errorCode]) {
         const options = this.quickFixes[errorCode];
         for (const option of options) {
-          if (errorCode === 'asyncapi-schema'){
-            if(diagnostic.message.includes(option.errorCheck)) {
-              const fix = createFix(document, range, errorCode, option, this.quickFixes);
-              if (fix) {
-                codeActions.push(fix);
-              }
-            }
-          }else{
+          // if (errorCode === 'asyncapi-schema'){
+          //   if(diagnostic.message.includes(option.errorCheck)) {
+          //     const fix = createFix(document, range, errorCode, option, this.quickFixes);
+          //     if (fix) {
+          //       codeActions.push(fix);
+          //     }
+          //   }
+          // }else{
             const fix = createFix(document, range, errorCode, option, this.quickFixes);
               if (fix) {
                 codeActions.push(fix);
               }
-          }
+          //}
         }
       }
     }

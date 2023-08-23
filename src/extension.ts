@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import { isAsyncAPIFile, openAsyncAPI, openAsyncapiFiles, previewAsyncAPI } from './PreviewWebPanel';
 import { asyncapiSmartPaste } from './SmartPasteCommand';
-import { MyCodeActionProvider } from './autoFix';
+import { DiagnosticFixProvider } from './autoFix';
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('Congratulations, your extension "asyncapi-preview" is now active!');
@@ -38,7 +38,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(vscode.commands.registerCommand("asyncapi.paste", asyncapiSmartPaste));
   
-  const codeActionProvider = new MyCodeActionProvider();
+  const codeActionProvider = new DiagnosticFixProvider();
   context.subscriptions.push(
     vscode.languages.registerCodeActionsProvider({ scheme: 'file', language: 'yaml' }, codeActionProvider)
   );
